@@ -1,0 +1,244 @@
+/* Resetando alguns estilos do HTML. */
+
+body,
+h1,
+h2,
+ul,
+li,
+p,
+dd,
+dt,
+dl {
+  margin: 0px;
+  padding: 0px;
+}
+
+img {
+  /* Com o "max-width: 100%", as imagens nunca vão ultrapassar o tamanho do container, ficando responsivas e não estourando mais. */
+  display: block;
+  max-width: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Código CSS */
+
+body {
+  background: #faf6ed;
+  color: #222;
+
+  /* Essa configuração é para o Chrome. Por padrão, ele fornece uma fonte mais "smoothing". Ao utilizarmos essa propriedade, a fonte vai ficar mais limpa. */
+  -webkit-font-smoothing: antialiased;
+  display: grid;
+  grid-template-columns: 1fr 120px minmax(300px, 800px) 1fr;
+}
+
+.texto-maior {
+  font-size: 150%;
+}
+
+.menu {
+  /* Queremos que o menu fique do início da linha "3" do Grid até a linha "5", que é a última linha do Grid. */
+  grid-column: 3 / 5;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  background: #fb5;
+}
+
+.menu ul {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.menu li a {
+  display: block;
+  padding: 10px;
+  margin-right: 10px;
+  color: #222;
+  text-decoration: none;
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+}
+
+.grid-section {
+  /* Essa parte do Grid começará na linha "2" e terminará na linha "4". */
+
+  grid-column: 2 / 4;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 90px 300px 1fr;
+  grid-gap: 20px;
+  margin-bottom: 4rem;
+}
+
+.titulo {
+  font-family: "Playfair Display SC", georgia;
+  font-size: 6rem;
+  line-height: 1;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  /* O título será inserido, de ponta a ponta, em todas as linhas do grid ".grid-section". */
+  grid-column: 1 / 4;
+}
+
+.animais h2 {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  color: #e54;
+}
+
+.animais h2::before {
+  content: "";
+  display: inline-block;
+  width: 40px;
+  height: 10px;
+  margin-right: 10px;
+  background: #fb5;
+}
+
+.animais p {
+  font-family: Helvetica, Arial;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.animais-lista {
+  height: 370px;
+  /* O que estourar o container no eixo "y" será inserido no scroll. */
+
+  overflow-y: scroll;
+  grid-column: 2;
+}
+
+.animais-lista::-webkit-scrollbar {
+  /* Estamos estilizando a barra de scroll. Isso não funcionará em todos os browsers. No Chrome, por exemplo, isso funciona. */
+  width: 18px;
+}
+
+.animais-lista::-webkit-scrollbar-thumb {
+  /* Isso seria a "barrinha" cinza que fica dentro do scroll. */
+
+  background: #fb5;
+  border-left: 4px solid #faf6ed;
+  border-right: 4px solid #faf6ed;
+}
+
+.animais-lista::-webkit-scrollbar-track {
+  /* Isso é a parte de "trás" da barrinha. */
+
+  background: #faf6ed;
+}
+
+.animais-descricao {
+  grid-column: 3;
+}
+
+.animais-descricao section {
+  margin-bottom: 3rem;
+}
+
+.faq-lista {
+  grid-column: 2 / 4;
+}
+
+.faq-lista dt {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: bold;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  color: #e54;
+}
+
+.faq-lista dt::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 10px;
+  margin-right: 10px;
+  background: #fb5;
+}
+
+.faq-lista dd {
+  font-family: Helvetica, Arial;
+  margin-bottom: 0.5rem;
+  margin-left: 30px;
+}
+
+.mapa {
+  grid-column: 2;
+}
+
+.dados {
+  grid-column: 3;
+}
+
+.dados li {
+  margin-bottom: 1rem;
+  font-family: Helvetica, Arial;
+}
+
+.dados li::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 10px;
+  margin-right: 10px;
+  background: #fb5;
+}
+
+.copy {
+  grid-column: 3/5;
+  margin-bottom: 2rem;
+  background: #fb5;
+}
+
+.copy p {
+  padding: 20px;
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: bold;
+}
+
+/* CSS Responsivo */
+
+@media (max-width: 700px) {
+  body {
+    grid-template-columns: 1fr;
+  }
+  .menu,
+  .grid-section,
+  .copy {
+    grid-column: 1;
+  }
+  .grid-section {
+    grid-template-columns: 100px 1fr;
+    grid-gap: 10px;
+  }
+  .animais-lista {
+    grid-column: 1;
+  }
+  .faq-lista,
+  .dados,
+  .mapa {
+    grid-column: 1 / 3;
+  }
+  .grid-section h1 {
+    font-size: 3rem;
+  }
+  .menu {
+    margin-top: 0px;
+  }
+  .copy {
+    margin-bottom: 0px;
+  }
+}
